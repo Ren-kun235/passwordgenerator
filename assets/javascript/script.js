@@ -92,7 +92,7 @@ var specialChar = [
   "?"
 ]
 
-
+var confirmedChar = []
 
 // Write password to the #password input
 function writePassword() {
@@ -103,11 +103,47 @@ function writePassword() {
 
 }
 
+function generatePassword() {
+  var request = parseInt(prompt("How many characters would you like your new password to be? (8-128 characters)"))
+  console.log(typeof request)
+
+  if (request < 8) {
+    alert("Please choose a number between 8-128!")
+    return null
+  }
+
+  if (request > 128) {
+    alert("Please choose a number between 8-128!")
+    return null
+  }
+
+  if (Number.isNaN(request)) {
+    alert("Please choose a NUMBER between 8-128!")
+    return null
+  }
+
+var lowerConfirm = confirm("Would you like to include lower case letters?");
+
+var upperConfirm = confirm("Would you like to include upper case letters?");
+
+var numberConfirm = confirm("Would you like to include numbers?");
+
+var specialConfirm = confirm("would you like to include special characters?");
+
+console.log(lowerConfirm, upperConfirm, numberConfirm, specialConfirm);
+
+if (!lowerConfirm && !upperConfirm && !numberConfirm && !specialConfirm) {
+  alert("Please select an option!")
+  return null
+}
+
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
-// define some arrays of characters such as upperCase/lowerCase/special characters/numbers
+
 // prompts to ask user how many characters (8-128)
 // confirm selection of characters being used
 // as they confirm, concat selected arrays to new arrays
