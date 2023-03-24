@@ -80,19 +80,19 @@ var specialChar = [
   "%",
   "^",
   "&",
-  "*",
   "-",
   "_",
   "=",
   "+",
-  ",",
   "<",
   ".",
   ">",
   "?"
 ]
 
-var confirmedChar = []
+var charConfirm = []
+
+var result = []
 
 // Write password to the #password input
 function writePassword() {
@@ -104,6 +104,7 @@ function writePassword() {
 }
 
 function generatePassword() {
+  var result = []
   var request = parseInt(prompt("How many characters would you like your new password to be? (8-128 characters)"))
   console.log(typeof request)
 
@@ -132,23 +133,45 @@ var specialConfirm = confirm("would you like to include special characters?");
 
 console.log(lowerConfirm, upperConfirm, numberConfirm, specialConfirm);
 
-if (!lowerConfirm && !upperConfirm && !numberConfirm && !specialConfirm) {
-  alert("Please select an option!")
-  return null
+  if (!lowerConfirm && !upperConfirm && !numberConfirm && !specialConfirm) {
+    alert("Please select an option!")
+    return null
+  }
+
+  if (lowerConfirm === true) {
+    charConfirm = charConfirm.concat(lowerCase)
+  }
+  
+  if (upperConfirm === true) {
+    charConfirm = charConfirm.concat(upperCase)
+  }
+
+  if (numberConfirm === true) {
+    charConfirm = charConfirm.concat(numbers)
+  }
+
+  if (specialConfirm === true) {
+    charConfirm = charConfirm.concat(specialChar)
+  }
+  
+  console.log(charConfirm)
+  
+  for (let index = 0; index < request; index++) {
+    var randomValue = Math.floor(Math.random() * charConfirm.length)
+    result.push(charConfirm[randomValue])
+
+  }
+  console.log(result);
+
+return result.join("")
 }
 
-}
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-// prompts to ask user how many characters (8-128)
-// confirm selection of characters being used
-// as they confirm, concat selected arrays to new arrays
-// create function to fetch a random # and save to a variable(var)
-// use that # as index to a new array
+// add code to ensure passwords don't chain
 
 // math.Random generates #(s) a randomized number(s) between 0-1
 // math.Floor rounds 1.2345 to an integer such as (1)
