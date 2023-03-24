@@ -92,8 +92,6 @@ var specialChar = [
 
 var charConfirm = []
 
-var result = []
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
